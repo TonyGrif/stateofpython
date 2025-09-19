@@ -18,7 +18,7 @@ class PypiIndexClient:
     _HEADERS = {"Accept": "application/vnd.pypi.simple.v1+json"}
 
     def __init__(self, client: Optional[httpx.Client] = None) -> None:
-        """Constructor for the PyPI client
+        """Constructor for the PyPi Index client
 
         Args:
             client: configured httpx client for connection pooling
