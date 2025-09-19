@@ -1,4 +1,4 @@
-from pypi.index import PypiIndexClient
+from pypi import PypiIndexClient
 
 
 class TestIndexClient:

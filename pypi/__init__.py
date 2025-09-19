@@ -1,7 +1,10 @@
 """This module defines code for interacting with the PyPi JSON API
 
 Attributes:
-    TBW
+    PypiIndexClient: Client for interacting with the Index API
 """
 
-__all__ = []
+from .index import PypiIndexClient
+from .json import PypiJsonClient
+
+__all__ = ["PypiIndexClient", "PypiJsonClient"]

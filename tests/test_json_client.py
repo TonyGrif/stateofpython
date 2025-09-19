@@ -1,4 +1,4 @@
-from pypi.json import PypiJsonClient
+from pypi import PypiJsonClient
 
 
 class TestJsonClient:
