@@ -2,6 +2,7 @@
 
 Attributes:
     PypiIndexClient: Client for interacting with the Index API
+    PypiJsonClient: Client for interacting with the JSON API
 """
 
 from .index import PypiIndexClient
