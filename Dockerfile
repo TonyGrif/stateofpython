@@ -11,4 +11,4 @@ ADD scripts/ ./scripts
 
 RUN uv sync --no-dev --locked
 
-CMD ["uv", "run", "scripts/get_latest_index.py"]
+CMD ["uv", "run", "scripts/pypi_data.py"]
