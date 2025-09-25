@@ -1,6 +1,6 @@
 [project]
 name = "stateofpython"
-version = "0.1.0"
+version = "0.2.0"
 description = "Analysis on the current state of the Python ecosystem"
 readme = "README.md"
 requires-python = ">=3.13"
