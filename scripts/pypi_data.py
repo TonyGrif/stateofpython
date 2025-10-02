@@ -19,11 +19,12 @@ def main() -> None:
         Column("documentation_url", String),
         Column("latest_version", String),
         Column("summary", String),
-        Column("development_status", ARRAY(String)),
+        Column("development_status", String),
         Column("environment", ARRAY(String)),
         Column("intended_audience", ARRAY(String)),
         Column("license", ARRAY(String)),
         Column("operating_system", ARRAY(String)),
+        Column("programming_language", ARRAY(String)),
         Column("topic", ARRAY(String)),
         Column("keywords", ARRAY(String)),
     )
