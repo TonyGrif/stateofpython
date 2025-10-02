@@ -1,6 +1,5 @@
 from pypi import PypiIndexClient, PypiJsonClient
-from pypi.parsers import parse_classifiers
-import json
+from pypi.parsers import parse_classifiers, parse_keywords
 import os
 from sqlalchemy import ARRAY, MetaData, create_engine, Table, Column, String
 from sqlalchemy.sql import insert
@@ -26,6 +25,7 @@ def main() -> None:
         Column("license", ARRAY(String)),
         Column("operating_system", ARRAY(String)),
         Column("topic", ARRAY(String)),
+        Column("keywords", ARRAY(String)),
     )
 
     metadata.create_all(engine, checkfirst=True)
@@ -55,8 +55,8 @@ def main() -> None:
 
     with PypiJsonClient() as client, engine.connect() as connection:
         for count, project in enumerate(project_index):
-            # if project not in testing_repos:
-            #     continue
+            if project not in testing_repos:
+                continue
 
             # TODO: Log all this
             try:
@@ -81,11 +81,10 @@ def main() -> None:
                 "summary": pypidata.get("summary"),
             }
 
+            data["keywords"] = parse_keywords(pypidata.get("keywords"))
+
             classifiers = parse_classifiers(pypidata.get("classifiers", []))
             data = data | classifiers
-
-            with open(f"data/{project}.json", "w+") as f:
-                json.dump(data, f)
 
             connection.execute(insert(table), data)
             connection.commit()

@@ -1,4 +1,4 @@
-from pypi.parsers import parse_classifiers
+from pypi.parsers import parse_classifiers, parse_keywords
 
 
 class TestParsers:
@@ -16,9 +16,6 @@ class TestParsers:
             "Programming Language :: Python :: 3 :: Only",
             "Programming Language :: Python :: 3.10",
             "Programming Language :: Python :: 3.11",
-            "Programming Language :: Python :: 3.12",
-            "Programming Language :: Python :: 3.13",
-            "Programming Language :: Python :: 3.9",
             "Topic :: Scientific/Engineering",
         ]
         result = parse_classifiers(pd_data)
@@ -29,3 +26,14 @@ class TestParsers:
         assert result["license"] == ["BSD License"]
         assert result["operating_system"] == ["OS Independent"]
         assert result["topic"] == ["Scientific/Engineering"]
+
+    def test_keywords(self):
+        test_data = "automation, formatter, keys"
+        result = parse_keywords(test_data)
+
+        assert len(result) == 3
+        assert "formatter" in result
+
+        null_data = ""
+        result = parse_keywords(null_data)
+        assert result == []

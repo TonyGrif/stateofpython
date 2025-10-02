@@ -4,7 +4,7 @@ Attributes:
     parse_classifiers: parse classifier tags from a List of values
 """
 
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 
 # TODO: Programming Languages
@@ -44,6 +44,21 @@ def parse_classifiers(response: List[str]) -> Dict[str, List[str]]:
     data["topic"] = [s.split("::")[-1].lstrip(" ") for s in response if "Topic ::" in s]
 
     return data
+
+
+def parse_keywords(response: Optional[str]) -> List:
+    """Parse the keywords of a repository
+
+    Args:
+        response: string text of all keywords
+
+    Returns:
+        List of keywords or an empty list
+    """
+    if response is None:
+        return []
+
+    return [word.lstrip(" ") for word in response.split(",")]
 
 
 def _handle_environment(data: List[str]) -> List[str]:
