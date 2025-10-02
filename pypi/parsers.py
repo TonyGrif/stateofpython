@@ -37,6 +37,9 @@ def parse_classifiers(response: List[str]) -> Dict[str, List[str]]:
     data["environment"] = _handle_environment(
         [s for s in response if "Environment ::" in s]
     )
+    data["framework"] = _simple_null_check(
+        [s.split("::")[-1].lstrip(" ") for s in response if "Framework ::" in s]
+    )
     data["intended_audience"] = _simple_null_check(
         [s.split("::")[-1].lstrip(" ") for s in response if "Intended Audience ::" in s]
     )
@@ -46,7 +49,6 @@ def parse_classifiers(response: List[str]) -> Dict[str, List[str]]:
     data["operating_system"] = _simple_null_check(
         [s.split("::")[-1].lstrip(" ") for s in response if "Operating System ::" in s]
     )
-
     data["programming_language"] = _handle_languages(
         [s for s in response if "Programming Language ::" in s]
     )

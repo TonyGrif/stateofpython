@@ -21,6 +21,7 @@ def main() -> None:
         Column("summary", String),
         Column("development_status", String),
         Column("environment", ARRAY(String)),
+        Column("framework", ARRAY(String)),
         Column("intended_audience", ARRAY(String)),
         Column("license", ARRAY(String)),
         Column("operating_system", ARRAY(String)),

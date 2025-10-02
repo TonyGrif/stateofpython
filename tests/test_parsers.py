@@ -8,6 +8,7 @@ class TestParsers:
             "Development Status :: 4 - Too Many Status",
             "Environment :: Console",
             "Environment :: GPU :: NVIDIA CUDA :: 12",
+            "Framework :: AsyncIO",
             "Intended Audience :: Science/Research",
             "License :: OSI Approved :: BSD License",
             "Operating System :: OS Independent",
@@ -23,6 +24,7 @@ class TestParsers:
 
         assert result["development_status"] == "5 - Production/Stable"
         assert result["environment"] == ["Console", "GPU :: NVIDIA CUDA :: 12"]
+        assert result["framework"] == ["AsyncIO"]
         assert result["intended_audience"] == ["Science/Research"]
         assert result["license"] == ["BSD License"]
         assert result["operating_system"] == ["OS Independent"]
@@ -35,6 +37,7 @@ class TestParsers:
 
         assert result["development_status"] is None
         assert result["environment"] is None
+        assert result["framework"] is None
         assert result["intended_audience"] is None
         assert result["license"] is None
         assert result["operating_system"] is None
